@@ -1,0 +1,63 @@
+@startuml DCU_SahtyCare
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Utilisateur" as U
+actor "Patient" as P
+actor "Médecin" as M
+actor "Admin" as A
+
+P -up-|> U
+M -up-|> U
+A -up-|> U
+
+rectangle "Système SahtyCare" {
+  
+  ' F1 : Authentification (SC)
+  usecase "S'inscrire" as UC1
+  usecase "Se connecter" as UC2
+  usecase "Récupérer mot de passe" as UC3
+  
+  ' F2 : Rendez-vous (MS)
+  usecase "Prendre un rendez-vous" as UC4
+  usecase "Annuler un rendez-vous" as UC5
+  usecase "Consulter son planning" as UC6
+  
+  ' F3 : Utilisateurs (HT)
+  usecase "Ajouter un utilisateur" as UC7
+  usecase "Supprimer un compte" as UC8
+  
+  ' F4 : Analyses (BA1)
+  usecase "Ajouter une analyse" as UC9
+  usecase "Consulter les résultats" as UC10
+  
+  ' F5 : Patients (BA2)
+  usecase "Créer dossier patient" as UC11
+  usecase "Consulter dossier médical" as UC12
+}
+
+' Relations d'authentification
+U --> UC2
+P --> UC1
+U --> UC3
+
+' Extensions et Inclusions
+UC4 ..> UC2 : <<include>>
+UC10 ..> UC2 : <<include>>
+UC1 ..> UC2 : <<extend>>
+
+' Relations Acteurs -> Cas d'utilisation
+P --> UC4
+P --> UC5
+P --> UC10
+
+M --> UC6
+M --> UC9
+M --> UC10
+M --> UC12
+
+A --> UC7
+A --> UC8
+A --> UC11
+
+@enduml
