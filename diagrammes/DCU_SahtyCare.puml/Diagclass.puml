@@ -1,0 +1,79 @@
+@startuml DC_SahtyCare
+skinparam classAttributeIconSize 0
+
+class Utilisateur << S, SC >> {
+  - id : int
+  - nom : String
+  + Utilisateur()
+  + seConnecter() : boolean
+  + getId() : int
+  + setNom(nom: String) : void
+}
+
+class Patient << S, BA2 >> {
+  - numeroSecu : String
+  + Patient()
+  + sInscrire() : void
+  + getNumeroSecu() : String
+  + setNumeroSecu(num: String) : void
+}
+
+class Medecin << S, MS >> {
+  - specialite : String
+  + Medecin()
+  + consulterPlanning() : void
+  + getSpecialite() : String
+  + setSpecialite(spec: String) : void
+}
+
+class Admin << S, HT >> {
+  - niveauAcces : int
+  + Admin()
+  + gererUtilisateur() : void
+  + getNiveauAcces() : int
+  + setNiveauAcces(niveau: int) : void
+}
+
+class RendezVous << S, MS >> {
+  - date : String
+  + RendezVous()
+  + confirmerRdv() : void
+  + getDate() : String
+  + setDate(date: String) : void
+}
+
+class DossierMedical << S, BA2 >> {
+  - antecedents : String
+  + DossierMedical()
+  + mettreAJour() : void
+  + getAntecedents() : String
+  + setAntecedents(ant: String) : void
+}
+
+class Analyse << S, BA1 >> {
+  - resultat : String
+  + Analyse()
+  + ajouterResultat() : void
+  + getResultat() : String
+  + setResultat(res: String) : void
+}
+
+class Prescription << S, BA1 >> {
+  - medicaments : String
+  + Prescription()
+  + genererOrdonnance() : void
+  + getMedicaments() : String
+  + setMedicaments(meds: String) : void
+}
+
+Utilisateur <|-- Patient
+Utilisateur <|-- Medecin
+Utilisateur <|-- Admin
+
+Patient "1" -- "0..*" RendezVous : prend >
+Medecin "1" -- "0..*" RendezVous : assure >
+Patient "1" *-- "1" DossierMedical : possède >
+DossierMedical "1" *-- "0..*" Analyse : contient >
+DossierMedical "1" *-- "0..*" Prescription : contient >
+Admin "1" -- "0..*" Utilisateur : gère >
+@enduml
