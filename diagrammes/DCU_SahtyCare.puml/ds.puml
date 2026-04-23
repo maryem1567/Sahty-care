@@ -1,0 +1,29 @@
+@startuml DS_PriseRdv
+actor Patient as P
+participant UI
+participant GestionnaireRdv as G
+participant BaseDeDonnees as DB
+
+P -> UI : choisirDate()
+activate UI
+UI -> G : verifierDisponibilite(date)
+activate G
+G -> DB : checkCreneau(date)
+activate DB
+DB --> G : estDisponible
+deactivate DB
+
+alt estDisponible == true
+    G -> DB : reserver(date)
+    activate DB
+    DB --> G : confirmation
+    deactivate DB
+    G --> UI : rdvValide()
+    UI --> P : afficher("RDV Confirmé")
+else estDisponible == false
+    G --> UI : erreur()
+    UI --> P : afficher("Date indisponible")
+end
+deactivate G
+deactivate UI
+@enduml
