@@ -1,10 +1,10 @@
-package com.sahtycare.models;
-
+package comsahtycaremodels;
 import java.time.LocalDateTime;
 
 public class RendezVous {
     private int id;
-    private int idPatient;
+    private Patient patient;
+    private Medecin medecin;
     private LocalDateTime date;
     private String statut;
     private String motif;
@@ -12,56 +12,46 @@ public class RendezVous {
 
     public RendezVous() {}
 
-    public RendezVous(int id, int idPatient, LocalDateTime date, String motif, double prixDT) {
-        this.id = id;
-        this.idPatient = idPatient;
-        this.date = date;
-        this.motif = motif;
-        this.prixDT = prixDT;
-        this.statut = "EN_ATTENTE";
+    // Constructeur utilisé par Main.java
+    public RendezVous(int id, Patient patient, LocalDateTime date, String motif, double prixDT) {
+        this.id = id; this.patient = patient; this.date = date; 
+        this.motif = motif; this.prixDT = prixDT; this.statut = "EN_ATTENTE";
+    }
+
+    // Constructeur utilisé par MedecinExamples
+    public RendezVous(LocalDateTime date, String motif, Medecin medecin, Patient patient) {
+        this.date = date; this.motif = motif; this.medecin = medecin;
+        this.patient = patient; this.statut = "EN_ATTENTE";
     }
 
     public void confirmerRdv() {
         this.statut = "CONFIRMÉ";
-        System.out.println("Le rendez-vous du " + date + " a été confirmé. Statut: " + statut);
+        System.out.println("Rendez-vous du " + date + " confirmé.");
     }
 
-    public void annulerRdv() {
-        this.statut = "ANNULÉ";
+    public int getId() { return id; } public void setId(int id) { this.id = id; }
+    public LocalDateTime getDate() { return date; } public void setDate(LocalDateTime d) { this.date = d; }
+    public String getStatut() { return statut; } public void setStatut(String s) { this.statut = s; }
+    public Patient getPatient() { return patient; } public void setPatient(Patient p) { this.patient = p; }
+    public Medecin getMedecin() { return medecin; } public void setMedecin(Medecin m) { this.medecin = m; }
+
+    // --- GETTERS ---
+    public String getMotif() { 
+        return motif; 
+    }
+    
+    // Note : j'ai mis "double" ici car c'est un prix. 
+    // Si tu avais déclaré "private int prixDT;", remplace simplement "double" par "int" ci-dessous !
+    public double getPrixDT() { 
+        return prixDT; 
     }
 
-    public void completrerRdv() {
-        this.statut = "COMPLÉTÉ";
+    // --- SETTERS (optionnels, pour enlever les alertes "can be final") ---
+    public void setMotif(String motif) { 
+        this.motif = motif; 
     }
-
-    // Getters et Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
-    public int getIdPatient() { return idPatient; }
-    public void setIdPatient(int idPatient) { this.idPatient = idPatient; }
-
-    public LocalDateTime getDate() { return date; }
-    public void setDate(LocalDateTime date) { this.date = date; }
-
-    public String getStatut() { return statut; }
-    public void setStatut(String statut) { this.statut = statut; }
-
-    public String getMotif() { return motif; }
-    public void setMotif(String motif) { this.motif = motif; }
-
-    public double getPrixDT() { return prixDT; }
-    public void setPrixDT(double prixDT) { this.prixDT = prixDT; }
-
-    @Override
-    public String toString() {
-        return "RendezVous{" +
-                "id=" + id +
-                ", idPatient=" + idPatient +
-                ", date=" + date +
-                ", statut='" + statut + '\'' +
-                ", motif='" + motif + '\'' +
-                ", prixDT=" + prixDT +
-                '}';
+    
+    public void setPrixDT(double prixDT) { 
+        this.prixDT = prixDT; 
     }
 }
