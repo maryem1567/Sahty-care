@@ -1,0 +1,43 @@
+@startuml DS_seq
+actor Patient as P
+participant "Système" as Sys
+actor "Médecin" as M
+actor "Admin" as A
+
+== US15 : Assistant de pré-diagnostic IA ==
+P -> Sys : Saisir ses symptômes
+activate Sys
+Sys -> Sys : Analyser les mots-clés
+Sys --> P : Suggérer la spécialité
+deactivate Sys
+
+== US3 & US17 : Prise de RDV et Devis ==
+P -> Sys : Demander un RDV
+activate Sys
+Sys -> Sys : Calculer le devis estimatif
+Sys --> P : Afficher le devis (70 DT)
+P -> Sys : Confirmer la réservation
+Sys -> M : Notifier le nouveau RDV
+deactivate Sys
+
+== US12 : Paiement des prestations ==
+P -> Sys : Payer la consultation (70 DT)
+activate Sys
+Sys -> Sys : Traiter la transaction
+Sys --> P : Générer et envoyer le reçu
+deactivate Sys
+
+== US8 & US14 : Résultats d'analyse et Alerte ==
+M -> Sys : Saisir les résultats
+activate Sys
+Sys -> Sys : Comparer avec le seuil
+
+alt Résultats anormaux
+    Sys -> A : Déclencher alerte URGENTE
+    Sys -> M : Notification : Contacter patient
+else Résultats normaux
+    Sys --> P : Notifier résu
+Sys --> P : Notifier résultats disponibles
+end
+deactivate Sys
+@enduml
