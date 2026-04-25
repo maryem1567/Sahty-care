@@ -1,7 +1,7 @@
 package comsahtycaremodels;
 
 import java.time.LocalDateTime;
-  // clqss RendezVous 
+
 public class RendezVous {
     private int id;
     private LocalDateTime dateRendezVous;
