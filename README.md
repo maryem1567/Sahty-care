@@ -1,72 +1,43 @@
-SahtyCare - Gestion Hospitalière Intelligente
-🚀 Pitch
-SahtyCare est une plateforme innovante de gestion hospitalière conçue pour centraliser les interactions entre patients, médecins et administrateurs . ]Notre solution permet de simplifier la prise de rendez-vous, de sécuriser le suivi des dossiers médicaux et d'optimiser la gestion des analyses biologiques au sein des cliniques tunisiennes.
+# 🏥 SahtyCare - Gestion Hospitalière Intelligente
 
-Acteurs
+### 🚀 Pitch
+SahtyCare est une plateforme innovante de gestion hospitalière conçue pour centraliser les interactions entre patients, médecins et administrateurs [cite: 54-55]. ]Notre solution permet de simplifier la prise de rendez-vous, de sécuriser le suivi des dossiers médicaux et d'optimiser la gestion des analyses biologiques au sein des cliniques tunisiennes[cite: 56].
 
-Patient
+---
 
-Médecin
+## 👥 L'Équipe Scrum (Startup)
+[cite_start]Conformément au principe "1 membre = 1 fonctionnalité"[cite: 7, 35], voici la répartition :
 
-Admin
+| Membre | Rôle Scrum | Fonctionnalité Gérée | Branche Git |
+| :--- | :--- | :--- | :--- |
+| **[chahed sassi]** | Product Owner | Inscription & Authentification | `feature/authentification` |
+| **[Maryem sokker]** | Scrum Master | Gestion des Rendez-vous | `feature/rendez-vous` |
+| **[Taha Hasnaoui]** | Développeur | Dashboard Administrateur | `feature/admin-users` |
+| **[Ameni Bouguerra]** | Développeur | Gestion des Analyses | `feature/analyses` |
+| **[Arij Hamida]** | Développeur | Dossiers Patients | `feature/patients` |
 
-👥 L'Équipe Scrum (Startup)
- 
+---
 
-Membre
+## 🎨 Design & Maquettes
+Le prototype interactif de l'application est disponible sur Figma. Il comprend au moins 2 écrans par fonctionnalité (10 écrans au total) avec une navigation cliquable [cite: 97-98, 115].
 
-Rôle Scrum
+🔗 **[Lien Figma : Cliquez ici pour voir les maquettes](https://lift-fairy-10437464.figma.site/)**
 
-Fonctionnalité Gérée
+---
 
-Branche Git
+## 📂 Structure du Dépôt (Standard AGL)
+Le projet suit l'arborescence exigée par le cahier des charges [cite: 120-131, 208] :
 
-Membre
+* `src/com/sahtycare/models/` : Code source Java (Squelette V1 & Logique V2)[cite: 129, 208].
+* `diagrammes/` : Modélisation UML (DCU, DC, DS) au format PlantUML[cite: 124, 208].
+* `docs/captures/` : Preuves visuelles (Maquettes Figma, Kanban Jira, Reviews de code)[cite: 115, 208].
+* `docs/rapport.pdf` : Rapport final consolidé (Livrable 7)[cite: 208].
 
-Rôle Scrum
+---
 
-Fonctionnalité Gérée
+## 🛠️ Instructions d'Exécution (V1)
+Pour tester le prototype console du Sprint 1[cite: 155]:
 
-Branche Git
-
-chahed sassi
-
-Product Owner
-
-Inscription & Authentification
-
-feature/authentification
-
-Maryem sokker
-
-Scrum Master
-
-Gestion des Rendez-vous
-
-feature/rendez-vous
-
-Taha Hasnaoui
-
-Développeur
-
-Dashboard Administrateur
-
-feature/admin-users
-
-Ameni Bouguerra
-
-Développeur
-
-Gestion des Analyses
-
-feature/analyses
-
-Arij Hamida
-
-Développeur
-
-Dossiers Patients
-
-feature/patients
-
-lien figma:Medical Appointment App Design
+1. **Compilation :**
+   ```bash
+   javac -encoding UTF-8 -d out src/com/sahtycare/models/*.java
